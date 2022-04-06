@@ -1,13 +1,24 @@
 package ro.ase.csie.cts.g1099.design.paterns.models;
 
 public class Account {
-	public double	loan_value,rate;	
-	public int	daysActive,account_Type;
+	private double	loanValue,rate;	
+	private int	daysActive,accountType;
 	public static final int	STANDARD=0,BUDGET=1,PREMIUM=2,SUPER_PREMIUM=3;
 	
-	public double loan() {
-		System.out.println("The loan value is " + this.loan_value);
-		return loan_value;
+	public Account(double LoanValue, double Rate, int AccountType) throws Exception {
+		if(LoanValue<0)
+			throw new Exception();
+		else
+		{
+			loanValue = LoanValue;
+		}
+		this.rate = Rate;
+		this.accountType = AccountType;
+	}
+	
+	public double getLoanValue() {
+		System.out.println("The loan value is " + this.accountType);
+		return loanValue;
 	}
 	
 	public double getRate() {
@@ -15,22 +26,24 @@ public class Account {
 		return this.rate;
 	}
 	
-	//must have method - the lead has requested it in all classes
 	public double getMonthlyRate() {
-		return loan_value*rate;
+		return loanValue*rate;
 	}
 	
-	public void setValue(double value) throws Exception {
-		if(value<0)
+	public void setValue(double LoanValue) throws Exception {
+		if(LoanValue<0)
 			throw new Exception();
 		else
 		{
-			loan_value = value;
+			loanValue = LoanValue;
 		}
 	}
 	
-	public String to_string() {
-		return "Loan: "+this.loan_value+"; rate: "+this.rate+"; days active:"+daysActive+"; Type: "+account_Type+";";
+	public String toString() {
+		return "Loan: "+ this.loanValue+
+				"; rate: "+ this.rate+
+				"; days active:"+ this.daysActive+
+				"; Type: "+ this.accountType+";";
 	}
 	
 	public void print() {
@@ -38,30 +51,20 @@ public class Account {
 		System.out.println("This is an account");
 	}
 
-	public static double calculate(Account[] 	accounts)
+	public static double calculate(Account[] accounts)
 	{
-	double totalFee=0.0;
-	Account	account;
-	int temp = 365;
-	for	(int	i=0;i<accounts.length;i++)	{
-	account=accounts[i];
-	if(account.account_Type==Account.PREMIUM||account.account_Type==Account.SUPER_PREMIUM)	
-	totalFee+=.0125	*	(	//	1.25%	broker's	fee
-			account.loan_value*Math.pow(account.rate,(account.daysActive/365)) - account.loan_value);	//	interest-principal
-	}
-	return	totalFee;
+		double totalFee=0.0;
+		Account	account;
+		int temp = 365;
+		for	(int	i=0;i<accounts.length;i++){
+			account=accounts[i];
+			if(account.accountType==Account.PREMIUM||account.accountType==Account.SUPER_PREMIUM)	
+				totalFee+=.0125	*(account.loanValue*Math.pow(account.rate,(account.daysActive/365)) - account.loanValue);
+		}
+		return	totalFee;
 	}
 
-	public Account(double value, double rate, int account_Type) throws Exception {
-		if(value<0)
-			throw new Exception();
-		else
-		{
-			loan_value = value;
-		}
-		this.rate = rate;
-		this.account_Type = account_Type;
-	}
+
 	
 	
 }
