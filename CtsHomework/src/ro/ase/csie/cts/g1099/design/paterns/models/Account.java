@@ -56,24 +56,6 @@ public class Account implements AccountInterface {
 				"; Type: "+ this.type+ ";";
 	}
 	
-	private static double computeTax(Account account) {
-		double tax = 0;
-		tax = constants.FEE_PERCENTAGE*(account.loanValue*Math.pow(account.rate,(account.daysActive/constants.DAYS_OF_YEAR)) - account.loanValue);
-		return tax;
-	}
-	
-	public static double calculateTotalTax(Account[] accounts)
-	{
-		double totalFee=0.0;
-		Account	account;
-		for	(int i=0; i<accounts.length; i++){
-			account=accounts[i];
-			if(account.type.getTaxType() == 1)	
-				totalFee+= computeTax(account);
-		}
-		return	totalFee;
-	}
-
 	@Override
 	public double getMonthlyRate() {
 		return loanValue*rate;

@@ -10,7 +10,11 @@
 -replace computeTax method in calculateTotalTax
 -created a special class for constant values
 -replaced constant values in calculateTotalTax method
+-removed the magic numbers
 -deleted Sysout methods
 -getters and setters for all the variables in Account class
 -created custom exceptions for validations
 -created an interface for eventual usage of getMonthlyRate on other classes
+-create AccountTaxComputation class that extends Account class
+-move computation methods in the specific class 
+-used constant values saved earlier in the newly created class
