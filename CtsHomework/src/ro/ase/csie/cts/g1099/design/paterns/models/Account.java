@@ -1,11 +1,14 @@
 package ro.ase.csie.cts.g1099.design.paterns.models;
 
+
 public class Account {
 	private double	loanValue,rate;	
-	private int	daysActive,accountType;
-	public static final int	STANDARD=0,BUDGET=1,PREMIUM=2,SUPER_PREMIUM=3;
+	private int	daysActive;
+	private int DAYS_OF_YEAR = 365;
+	private double FEE_PERCENTAGE = .0125f;
+	AccountType type;
 	
-	public Account(double LoanValue, double Rate, int AccountType) throws Exception {
+	public Account(double LoanValue, double Rate, AccountType Type) throws Exception {
 		if(LoanValue<0)
 			throw new Exception();
 		else
@@ -13,11 +16,11 @@ public class Account {
 			loanValue = LoanValue;
 		}
 		this.rate = Rate;
-		this.accountType = AccountType;
+		this.type = Type;
 	}
 	
 	public double getLoanValue() {
-		System.out.println("The loan value is " + this.accountType);
+		System.out.println("The loan value is " + this.type);
 		return loanValue;
 	}
 	
@@ -43,18 +46,17 @@ public class Account {
 		return "Loan: "+ this.loanValue+
 				"; rate: "+ this.rate+
 				"; days active:"+ this.daysActive+
-				"; Type: "+ this.accountType+";";
+				"; Type: "+ this.type+";";
 	}
 	
 	public static double calculate(Account[] accounts)
 	{
 		double totalFee=0.0;
 		Account	account;
-		int temp = 365;
 		for	(int	i=0;i<accounts.length;i++){
 			account=accounts[i];
-			if(account.accountType==Account.PREMIUM||account.accountType==Account.SUPER_PREMIUM)	
-				totalFee+=.0125	*(account.loanValue*Math.pow(account.rate,(account.daysActive/365)) - account.loanValue);
+			if(account.type==AccountType.PREMIUM||account.type==AccountType.SUPER_PREMIUM)	
+				totalFee+= (account.loanValue*Math.pow(account.rate,(account.daysActive/365)) - account.loanValue);
 		}
 		return	totalFee;
 	}
