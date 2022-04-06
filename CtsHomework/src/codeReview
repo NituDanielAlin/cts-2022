@@ -11,3 +11,4 @@
 -created a special class for constant values
 -replaced constant values in calculateTotalTax method
 -deleted Sysout methods
+-getters and setters for all the variables in Account class

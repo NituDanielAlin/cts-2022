@@ -20,18 +20,30 @@ public class Account {
 		return loanValue;
 	}
 	
-	public double getRate() {
-		return this.rate;
-	}
-	
-	public double getMonthlyRate() {
-		return loanValue*rate;
-	}
-	
 	public void setLoanValue(double LoanValue) throws NegativeLoanException {
 		if(LoanValue<0)
 			throw new NegativeLoanException();
 		this.loanValue = LoanValue;
+	}
+	
+	public double getRate() {
+		return this.rate;
+	}
+	
+	public void setRate(double rate) {
+		this.rate = rate;
+	}
+	
+	public int getDaysActive() {
+		return daysActive;
+	}
+
+	public void setDaysActive(int daysActive) {
+		this.daysActive = daysActive;
+	}
+
+	public double getMonthlyRate() {
+		return loanValue*rate;
 	}
 	
 	public String toString() {
