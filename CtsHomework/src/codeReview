@@ -13,3 +13,4 @@
 -deleted Sysout methods
 -getters and setters for all the variables in Account class
 -created custom exceptions for validations
+-created an interface for eventual usage of getMonthlyRate on other classes

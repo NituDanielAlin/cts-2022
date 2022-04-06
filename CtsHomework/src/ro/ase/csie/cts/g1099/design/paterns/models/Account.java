@@ -3,8 +3,9 @@ import ro.ase.csie.cts.g1099.design.paterns.models.Constants;
 import ro.ase.csie.cts.g1099.design.paterns.customexceptions.NegativeActiveDaysException;
 import ro.ase.csie.cts.g1099.design.paterns.customexceptions.NegativeLoanException;
 import ro.ase.csie.cts.g1099.design.paterns.customexceptions.NegativeRateException;
+import ro.ase.csie.cts.g1099.design.paterns.interfaces.AccountInterface;
 
-public class Account {
+public class Account implements AccountInterface {
 	private double	loanValue,rate;	
 	private int	daysActive;
 	static Constants constants;
@@ -47,10 +48,6 @@ public class Account {
 			throw new NegativeActiveDaysException();
 		this.daysActive = daysActive;
 	}
-
-	public double getMonthlyRate() {
-		return loanValue*rate;
-	}
 	
 	public String toString() {
 		return "Loan: "+ this.loanValue+
@@ -75,6 +72,11 @@ public class Account {
 				totalFee+= computeTax(account);
 		}
 		return	totalFee;
+	}
+
+	@Override
+	public double getMonthlyRate() {
+		return loanValue*rate;
 	}
 
 
