@@ -2,3 +2,4 @@
 -delete useless method "print"
 -created account type enum and replaced account type variables
 -replace repetitive code with setValue method
+-replace exception with custom NegativeValueException

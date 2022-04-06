@@ -1,5 +1,6 @@
 package ro.ase.csie.cts.g1099.design.paterns.models;
 
+import ro.ase.csie.cts.g1099.design.paterns.customexceptions.NegativeLoanException;
 
 public class Account {
 	private double	loanValue,rate;	
@@ -8,8 +9,13 @@ public class Account {
 	private double FEE_PERCENTAGE = .0125f;
 	AccountType type;
 	
-	public Account(double LoanValue, double Rate, AccountType Type) throws Exception {
-		setValue(LoanValue);
+	public Account(double LoanValue, double Rate, AccountType Type) throws NegativeLoanException {
+		if(LoanValue<0)
+			throw new NegativeLoanException();
+		else
+		{
+			loanValue = LoanValue;
+		}
 		this.rate = Rate;
 		this.type = Type;
 	}
@@ -28,9 +34,9 @@ public class Account {
 		return loanValue*rate;
 	}
 	
-	public void setValue(double LoanValue) throws Exception {
+	public void setValue(double LoanValue) throws NegativeLoanException {
 		if(LoanValue<0)
-			throw new Exception();
+			throw new NegativeLoanException();
 		else
 		{
 			loanValue = LoanValue;
@@ -41,7 +47,7 @@ public class Account {
 		return "Loan: "+ this.loanValue+
 				"; rate: "+ this.rate+
 				"; days active:"+ this.daysActive+
-				"; Type: "+ this.type+";";
+				"; Type: "+ this.type+ ";";
 	}
 	
 	public static double calculate(Account[] accounts)
