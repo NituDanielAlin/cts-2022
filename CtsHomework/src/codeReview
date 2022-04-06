@@ -3,3 +3,6 @@
 -created account type enum and replaced account type variables
 -replace repetitive code with setValue method
 -replace exception with custom NegativeValueException
+-replace useless else branch
+-create getTaxType method
+-replace if condition in calculateTotalTax method

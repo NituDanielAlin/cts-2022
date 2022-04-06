@@ -12,10 +12,7 @@ public class Account {
 	public Account(double LoanValue, double Rate, AccountType Type) throws NegativeLoanException {
 		if(LoanValue<0)
 			throw new NegativeLoanException();
-		else
-		{
-			loanValue = LoanValue;
-		}
+		this.loanValue = LoanValue;
 		this.rate = Rate;
 		this.type = Type;
 	}
@@ -37,10 +34,7 @@ public class Account {
 	public void setValue(double LoanValue) throws NegativeLoanException {
 		if(LoanValue<0)
 			throw new NegativeLoanException();
-		else
-		{
-			loanValue = LoanValue;
-		}
+		this.loanValue = LoanValue;
 	}
 	
 	public String toString() {
@@ -50,13 +44,13 @@ public class Account {
 				"; Type: "+ this.type+ ";";
 	}
 	
-	public static double calculate(Account[] accounts)
+	public static double calculateTotalTax(Account[] accounts)
 	{
 		double totalFee=0.0;
 		Account	account;
 		for	(int	i=0;i<accounts.length;i++){
 			account=accounts[i];
-			if(account.type==AccountType.PREMIUM||account.type==AccountType.SUPER_PREMIUM)	
+			if(account.type.getTaxType() == 1)	
 				totalFee+= (account.loanValue*Math.pow(account.rate,(account.daysActive/365)) - account.loanValue);
 		}
 		return	totalFee;
