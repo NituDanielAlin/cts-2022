@@ -1,6 +1,8 @@
 package ro.ase.csie.cts.g1099.design.paterns.models;
 import ro.ase.csie.cts.g1099.design.paterns.models.Constants;
+import ro.ase.csie.cts.g1099.design.paterns.customexceptions.NegativeActiveDaysException;
 import ro.ase.csie.cts.g1099.design.paterns.customexceptions.NegativeLoanException;
+import ro.ase.csie.cts.g1099.design.paterns.customexceptions.NegativeRateException;
 
 public class Account {
 	private double	loanValue,rate;	
@@ -30,7 +32,9 @@ public class Account {
 		return this.rate;
 	}
 	
-	public void setRate(double rate) {
+	public void setRate(double rate) throws NegativeRateException {
+		if(rate<0)
+			throw new NegativeRateException();
 		this.rate = rate;
 	}
 	
@@ -38,7 +42,9 @@ public class Account {
 		return daysActive;
 	}
 
-	public void setDaysActive(int daysActive) {
+	public void setDaysActive(int daysActive) throws NegativeActiveDaysException {
+		if(daysActive<0)
+			throw new NegativeActiveDaysException();
 		this.daysActive = daysActive;
 	}
 
