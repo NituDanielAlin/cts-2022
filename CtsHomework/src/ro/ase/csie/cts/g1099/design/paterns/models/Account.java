@@ -9,12 +9,7 @@ public class Account {
 	AccountType type;
 	
 	public Account(double LoanValue, double Rate, AccountType Type) throws Exception {
-		if(LoanValue<0)
-			throw new Exception();
-		else
-		{
-			loanValue = LoanValue;
-		}
+		setValue(LoanValue);
 		this.rate = Rate;
 		this.type = Type;
 	}
