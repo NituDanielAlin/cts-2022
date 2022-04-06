@@ -17,12 +17,10 @@ public class Account {
 	}
 	
 	public double getLoanValue() {
-		System.out.println("The loan value is " + this.type);
 		return loanValue;
 	}
 	
 	public double getRate() {
-		System.out.println("The rate is "+rate);
 		return this.rate;
 	}
 	

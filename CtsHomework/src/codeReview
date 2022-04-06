@@ -10,3 +10,4 @@
 -replace computeTax method in calculateTotalTax
 -created a special class for constant values
 -replaced constant values in calculateTotalTax method
+-deleted Sysout methods
