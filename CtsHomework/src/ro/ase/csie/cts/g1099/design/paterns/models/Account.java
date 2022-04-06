@@ -46,11 +46,6 @@ public class Account {
 				"; Type: "+ this.accountType+";";
 	}
 	
-	public void print() {
-		int vb = 10;
-		System.out.println("This is an account");
-	}
-
 	public static double calculate(Account[] accounts)
 	{
 		double totalFee=0.0;
