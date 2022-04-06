@@ -6,3 +6,5 @@
 -replace useless else branch
 -create getTaxType method
 -replace if condition in calculateTotalTax method
+-create computeTax method
+-replace computeTax method in calculateTotalTax
